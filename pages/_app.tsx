@@ -1,7 +1,14 @@
-import '../styles/globals.css'
+import Head from 'next/head';
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps }) => (
+    <div>
+        <Head>
+            <title>Simple Blog</title>
+        </Head>
+        <h1>Simple Blog</h1>
+        <Component {...pageProps} />
+    </div>
+);
 
-export default MyApp
+export default MyApp;
