@@ -1,6 +1,7 @@
 import App, { AppContext, AppInitialProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
 import { wrapper } from '../store';
 import '../styles/globals.css';
 
@@ -23,7 +24,15 @@ class BlogApp extends App<AppInitialProps> {
                     <title>Simple Blog</title>
                 </Head>
                 <h1>Simple Blog</h1>
-                <Component {...pageProps} />
+                <SnackbarProvider
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                    maxSnack={1}
+                >
+                    <Component {...pageProps} />
+                </SnackbarProvider>
             </div>
         );
     }
