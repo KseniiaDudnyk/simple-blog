@@ -9,3 +9,8 @@ export const getCurrentPostDetails = (post: Post) => ({
     type: BlogActionTypes.GET_POST_DETAILS,
     payload: post,
 });
+
+export const createPost = (post: Post) => ({
+    type: BlogActionTypes.CREATE_POST,
+    payload: post,
+});

@@ -27,6 +27,8 @@ const reducer = (state: InitialState = initialState, action: AnyAction): Initial
             return { ...state, posts: action.payload };
         case BlogActionTypes.GET_POST_DETAILS:
             return { ...state, currentPost: action.payload };
+        case BlogActionTypes.CREATE_POST:
+            return { ...state, posts: [...state.posts, action.payload] };
         default:
             return state;
     }
