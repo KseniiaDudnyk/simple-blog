@@ -1,28 +1,28 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
+import { useSelector } from 'react-redux';
+import { NextPage } from 'next';
 import { getAllPosts } from './api/posts-api';
+import { getPosts } from '../redux/actions';
 import PostOverview from '../components/post-overview/post.overview.component';
 
-type HomeProps = {
-    allPostsData: Post[];
+const Home: NextPage = () => {
+    const posts = useSelector((state) => state.posts);
+
+    return (
+        <div>
+            {posts.map((post) => (
+                <PostOverview key={post.id} post={post} />
+            ))}
+        </div>
+    );
 };
 
-const Home: React.FC<HomeProps> = ({ allPostsData }) => (
-    <div>
-        {allPostsData.map((post) => (
-            <PostOverview key={post.id} post={post} />
-        ))}
-    </div>
-);
-
-export default Home;
-
-export const getServerSideProps: GetServerSideProps = async () => {
+Home.getInitialProps = async ({ store }) => {
     const allPostsData = await getAllPosts();
 
-    return {
-        props: {
-            allPostsData,
-        },
-    };
+    store.dispatch(getPosts(allPostsData));
+
+    return {};
 };
+
+export default Home;
