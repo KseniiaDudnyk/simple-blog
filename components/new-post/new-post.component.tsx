@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Form, InputField, SubmitButton } from './new-post.styles';
 import { useSnackbar } from 'notistack';
-import { useRouter } from 'next/router';
 
 type NewPostProps = {
     onSubmit: (title: string, body: string) => void;
@@ -12,7 +11,6 @@ const NewPost: React.FC<NewPostProps> = ({ onSubmit }) => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const { enqueueSnackbar } = useSnackbar();
-    const router = useRouter();
 
     const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         setTitle(event.target.value);
@@ -27,7 +25,6 @@ const NewPost: React.FC<NewPostProps> = ({ onSubmit }) => {
 
         if (title && body) {
             onSubmit(title, body);
-            router.push('/');
         } else {
             enqueueSnackbar('Please, fill Title and Body fields', { variant: 'error' });
         }
