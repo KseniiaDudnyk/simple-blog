@@ -5,11 +5,15 @@ type Post = {
     id: number;
     title: string;
     body: string;
-    comments?: Comment[];
+    comments?: PostComment[];
 };
 
-type Comment = {
+type PostComment = {
     id: number;
     postId: number;
     body: string;
+};
+
+type PostProps = {
+    post: Post;
 };

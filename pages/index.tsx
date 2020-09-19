@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { NextPage } from 'next';
 import { getAllPosts } from './api/posts-api';
 import { getPosts } from '../redux/actions';
-import PostOverview from '../components/post-overview/post.overview.component';
+import { InitialState } from '../redux/reducer';
+import PostOverview from '../components/post-overview/post-overview.component';
 
 const Home: NextPage = () => {
-    const posts = useSelector((state) => state.posts);
+    const posts = useSelector((state: InitialState) => state.posts);
 
     return (
         <div>

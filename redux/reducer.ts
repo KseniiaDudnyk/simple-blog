@@ -4,10 +4,12 @@ import { BlogActionTypes } from './action.types';
 
 export type InitialState = {
     posts: Post[];
+    currentPost: Post;
 };
 
 const initialState: InitialState = {
     posts: [],
+    currentPost: null,
 };
 
 const reducer = (state: InitialState = initialState, action: AnyAction): InitialState => {
@@ -23,6 +25,8 @@ const reducer = (state: InitialState = initialState, action: AnyAction): Initial
     switch (action.type) {
         case BlogActionTypes.GET_POSTS:
             return { ...state, posts: action.payload };
+        case BlogActionTypes.GET_POST_DETAILS:
+            return { ...state, currentPost: action.payload };
         default:
             return state;
     }
